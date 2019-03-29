@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Login | Lekro Site</title>
+
+   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+   <script>
+      // Initialize Firebase
+      var config = {
+         apiKey: "AIzaSyD7d9U8isKD4fzSA3_HgFq9DG0jbYUV0l4",
+         authDomain: "wutfp-34d90.firebaseapp.com",
+         databaseURL: "https://wutfp-34d90.firebaseio.com",
+         projectId: "wutfp-34d90",
+         storageBucket: "wutfp-34d90.appspot.com",
+         messagingSenderId: "354995284007"
+      };
+      firebase.initializeApp(config);
+   </script>
+   <meta name="viewport" content="width=device-width initial-scale= 1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+      integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous">
+   </script>
+
+   <link rel="stylesheet" type="text/css" href="grid.css" />
+</head>
+
+<body>
+   <section class="header">
+      <nav class="login-nav">
+         <h1>
+            Welcome To Lekr0's Site
+         </h1>
+      </nav>
+   </section>
+   <section class="forms">
+      <h1>Login</h1>
+      <form action="">
+         Name (Digital Name) : <br>
+         <input type="text" id="name"> <br>
+         Password (root) : <br>
+         <input type="text"> <br><br>
+         <button class="btn" onclick="savedata">Submit</button>
+      </form>
+   </section>
+   <script>
+      var messageField = document.getElementById('name');
+
+      // Save data to firebase
+      function savedata() {
+         var message = messageField.value;
+         console.log(message);
+         firebase.database().ref('users/' + message).set({
+            name: message
+         });
+         messageField.value = '';
+      }
+   </script>
+</body>
+
+</html>
